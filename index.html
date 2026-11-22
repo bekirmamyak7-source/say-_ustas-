@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
 <title>Sayı Ustası</title>
 <style>
 body {
@@ -54,28 +55,22 @@ button:hover { background: #ffea91; }
 </style>
 </head>
 <body>
-
 <div class="game">
   <h1>🔢 SAYI USTASI</h1>
   <h2>Gizli sayıyı bul!</h2>
   <p>1 ile 100 arasında bir sayı tuttum.</p>
   <p>Hadi bakalım, bulabilecek misin?</p>
-
   <input id="guess" type="number"
   min="1" max="100" placeholder="Sayını yaz">
-
   <br>
   <button onclick="checkGuess()">Tahmin Et</button>
   <button onclick="newGame()">Yeni Oyun</button>
-
   <p id="message">Başarılar! 🎯</p>
-
   <div class="stats">
     <p>⭐ Puan: <span id="score">0</span></p>
     <p>🎮 Deneme: <span id="tries">0</span></p>
   </div>
 </div>
-
 <script>
 let secret = randomNumber();
 let tries = 0;
@@ -121,7 +116,5 @@ function newGame() {
     "Yeni oyun başladı! Bol şans! 🎯";
 }
 </script>
-
 </body>
 </html>
-
