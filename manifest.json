@@ -1,0 +1,11 @@
+{
+  "name": "Sayı Ustası",
+  "short_name": "Sayı Ustası",
+  "description": "Sayı Ustası oyunu",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50"
+}
