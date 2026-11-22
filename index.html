@@ -1,1 +1,127 @@
-<h1>Enter your code here</h1>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayı Ustası</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#101c40,#263f80);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+.game {
+  max-width: 420px;
+  margin: 35px auto;
+  padding: 25px;
+  background: #182b55;
+  border-radius: 22px;
+  box-shadow: 0 8px 25px #0006;
+}
+h1 { color: #ffd54a; }
+input {
+  width: 75%;
+  padding: 14px;
+  font-size: 22px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+}
+button {
+  padding: 13px 22px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #ffd54a;
+  color: #17264a;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { background: #ffea91; }
+#message {
+  font-size: 20px;
+  min-height: 30px;
+}
+.stats {
+  color: #ffd54a;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<div class="game">
+  <h1>🔢 SAYI USTASI</h1>
+  <h2>Gizli sayıyı bul!</h2>
+  <p>1 ile 100 arasında bir sayı tuttum.</p>
+  <p>Hadi bakalım, bulabilecek misin?</p>
+
+  <input id="guess" type="number"
+  min="1" max="100" placeholder="Sayını yaz">
+
+  <br>
+  <button onclick="checkGuess()">Tahmin Et</button>
+  <button onclick="newGame()">Yeni Oyun</button>
+
+  <p id="message">Başarılar! 🎯</p>
+
+  <div class="stats">
+    <p>⭐ Puan: <span id="score">0</span></p>
+    <p>🎮 Deneme: <span id="tries">0</span></p>
+  </div>
+</div>
+
+<script>
+let secret = randomNumber();
+let tries = 0;
+let score = 0;
+
+function randomNumber() {
+  return Math.floor(Math.random() * 100) + 1;
+}
+
+function checkGuess() {
+  const input = document.getElementById("guess");
+  const guess = Number(input.value);
+  const message = document.getElementById("message");
+
+  if (!input.value || guess < 1 || guess > 100) {
+    message.textContent = "1 ile 100 arasında sayı gir!";
+    return;
+  }
+
+  tries++;
+  document.getElementById("tries").textContent = tries;
+
+  if (guess === secret) {
+    score += Math.max(10, 110 - tries * 10);
+    document.getElementById("score").textContent = score;
+    message.textContent = "🎉 TEBRİKLER! Sayıyı buldun!";
+  } else if (guess < secret) {
+    message.textContent = "⬆️ Daha büyük bir sayı dene!";
+  } else {
+    message.textContent = "⬇️ Daha küçük bir sayı dene!";
+  }
+
+  input.value = "";
+  input.focus();
+}
+
+function newGame() {
+  secret = randomNumber();
+  tries = 0;
+  document.getElementById("tries").textContent = 0;
+  document.getElementById("guess").value = "";
+  document.getElementById("message").textContent =
+    "Yeni oyun başladı! Bol şans! 🎯";
+}
+</script>
+
+</body>
+</html>
+
